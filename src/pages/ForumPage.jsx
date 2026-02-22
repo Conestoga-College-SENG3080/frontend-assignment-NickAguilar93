@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router";
+import { useParams } from "react-router";
 import axiosInstance from "../services/axiosInstance";
 import Card from "../components/Card";
 
 const ForumPage = () => {
   const { id } = useParams();
   const [posts, setPosts] = useState();
-  const [isLoading, setIsLoading] = useState();
-  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -28,8 +27,21 @@ const ForumPage = () => {
     fetchPosts();
   }, []);
 
-  const handleClick = () => {
-    navigate(`forum/${id}`);
+  const handleClick = (id) => {
+    let data = localStorage.getItem("favorites");
+
+    const favorites = data ? JSON.parse(data) : [];
+
+    if (favorites.includes(id)) {
+      alert("This item already exists in favorites");
+      return;
+    }
+    const updatedFavorites = [...favorites, id];
+
+    const serializedData = JSON.stringify(updatedFavorites);
+
+    localStorage.setItem("favorites", serializedData);
+    alert("Favorite saved");
   };
 
   if (isLoading) {
@@ -47,9 +59,10 @@ const ForumPage = () => {
         posts.map((post) => {
           return (
             <Card
+              key={post.id}
               title={post.title}
               description={post.content}
-              onClick={handleClick}
+              onClick={() => handleClick(post.id)}
             />
           );
         })

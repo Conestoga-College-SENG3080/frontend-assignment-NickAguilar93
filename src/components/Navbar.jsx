@@ -9,7 +9,7 @@ const Navbar = () => {
         <div className="shrink-0 font-bold text-xl tracking-wider">Creddit</div>
         <div className="flex">
           <NavItem text="Home" to="/"></NavItem>
-          <NavItem text="Favorites" to="/"></NavItem>
+          <NavItem text="Favorites" to="/favorites"></NavItem>
         </div>
 
         <div className="flex items-center gap-3 py-1 px-3 ">
