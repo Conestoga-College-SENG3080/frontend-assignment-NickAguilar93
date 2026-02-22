@@ -13,7 +13,7 @@ const MainLayout = () => {
     );
   }
   return (
-    <div className="h-screen overflow-hidden">
+    <div className="h-screen">
       <Navbar />
 
       <Outlet />

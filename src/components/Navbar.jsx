@@ -12,7 +12,7 @@ const Navbar = () => {
           <NavItem text="Favorites" to="/"></NavItem>
         </div>
 
-        <div className="flex items-center gap-3  py-1 px-3 ">
+        <div className="flex items-center gap-3 py-1 px-3 ">
           <span className="text-sm font-medium hidden sm:block">
             {`${user.firstName} ${user.lastName}`}
           </span>

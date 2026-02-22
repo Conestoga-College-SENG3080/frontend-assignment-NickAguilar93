@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import Card from "../components/Card";
 import axiosInstance from "../services/axiosInstance";
+import { useNavigate } from "react-router";
 const Homepage = () => {
   const [forums, setForums] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchForums = async () => {
       try {
@@ -19,6 +21,10 @@ const Homepage = () => {
     fetchForums();
   }, []);
 
+  const handleClick = (slug) => {
+    navigate(`forum/${slug}`);
+  };
+
   if (isLoading) {
     return (
       <div className="fixed inset-0 flex size-full flex-col items-center justify-center gap-12">
@@ -29,11 +35,18 @@ const Homepage = () => {
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-2 p-2">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-2">
       {forums ? (
         forums.map((forum, i) => {
           return (
-            <Card key={i} title={forum.slug} description={forum.description} />
+            <Card
+              key={i}
+              title={`r/${forum.slug}`}
+              description={forum.description}
+              onClick={() => {
+                handleClick(forum.slug);
+              }}
+            />
           );
         })
       ) : (
