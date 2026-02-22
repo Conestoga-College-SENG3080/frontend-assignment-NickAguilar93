@@ -54,16 +54,20 @@ const ForumPage = () => {
   }
 
   return (
-    <div>
+    <div className="max-w-3/4 mx-auto pt-2 space-y-4">
       {posts ? (
         posts.map((post) => {
           return (
-            <Card
-              key={post.id}
-              title={post.title}
-              description={post.content}
-              onClick={() => handleClick(post.id)}
-            />
+            <div key={post.id}>
+              <Card
+                title={post.title}
+                description={post.content}
+                author={post.author}
+                totalLikes={post.totalLikes}
+                totalRead={post.totalRead}
+                onClick={() => handleClick(post.id)}
+              />
+            </div>
           );
         })
       ) : (

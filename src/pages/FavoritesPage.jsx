@@ -5,17 +5,29 @@ import axiosInstance from "../services/axiosInstance";
 const FavoritesPage = () => {
   const [favoritePosts, setFavoritePosts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  const handleFavoriteRemove = (id) => {
+    const data = localStorage.getItem("favorites");
+
+    const favorites = data ? JSON.parse(data) : [];
+
+    const updatedFavorties = favorites.filter((fId) => fId != id);
+    localStorage.setItem("favorites", JSON.stringify(updatedFavorties));
+    setFavoritePosts((prev) => prev.filter((post) => post.id !== id));
+  };
   useEffect(() => {
     const fetchFavorites = async () => {
       try {
         const data = localStorage.getItem("favorites");
 
         const favorites = data ? JSON.parse(data) : [];
-        const response = await axiosInstance.post("/posts", {
-          ids: favorites,
-        });
+        if (favorites.length > 0) {
+          const response = await axiosInstance.post("/posts", {
+            ids: favorites,
+          });
 
-        setFavoritePosts(response.data);
+          setFavoritePosts(response.data);
+        }
       } catch (error) {
         console.error(error);
       } finally {
@@ -35,13 +47,27 @@ const FavoritesPage = () => {
     );
   }
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-2">
-      {favoritePosts ? (
+    <div className="max-w-3/4 mx-auto pt-2 space-y-4">
+      {favoritePosts.length > 0 ? (
         favoritePosts.map((post) => {
-          return <Card key={post.id} title={post.title} />;
+          return (
+            <div key={post.id}>
+              <Card
+                title={post.title}
+                description={post.content}
+                author={post.author}
+                totalLikes={post.totalLikes}
+                totalRead={post.totalRead}
+                button={true}
+                buttonOnClick={() => handleFavoriteRemove(post.id)}
+              />
+            </div>
+          );
         })
       ) : (
-        <div>No Posts Favorited</div>
+        <div className="flex justify-center items-center">
+          <h2 className="text-2xl">No Posts Favorited</h2>
+        </div>
       )}
     </div>
   );

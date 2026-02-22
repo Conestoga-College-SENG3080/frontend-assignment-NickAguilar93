@@ -4,6 +4,7 @@ import axiosInstance from "../services/axiosInstance";
 import { useNavigate } from "react-router";
 const Homepage = () => {
   const [forums, setForums] = useState(null);
+  const [selectedForum, setSelectedForum] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
   useEffect(() => {
@@ -36,22 +37,18 @@ const Homepage = () => {
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-2">
-      {forums ? (
-        forums.map((forum, i) => {
-          return (
-            <Card
-              key={i}
-              title={`r/${forum.slug}`}
-              description={forum.description}
-              onClick={() => {
-                handleClick(forum.slug);
-              }}
-            />
-          );
-        })
-      ) : (
-        <div>No list</div>
-      )}
+      {forums.map((forum, i) => {
+        return (
+          <Card
+            key={i}
+            title={`r/${forum.slug}`}
+            description={forum.description}
+            onClick={() => {
+              handleClick(forum.slug);
+            }}
+          />
+        );
+      })}
     </div>
   );
 };
