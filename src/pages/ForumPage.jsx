@@ -1,3 +1,10 @@
+/*
+ * FILE : ForumPage.jsx
+ * PROJECT : SENG3080 - Frontend Assignment
+ * PROGRAMMER : Nicholas Aguilar
+ * FIRST VERSION : 2026-02-22
+ * DESCRIPTION : This file defines the ForumPage component where users can view forum posts and favorite items
+ */
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import axiosInstance from "../services/axiosInstance";
@@ -8,6 +15,12 @@ const ForumPage = () => {
   const [posts, setPosts] = useState();
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
+    /*
+     *	FUNCTION : fetchPosts
+     *	DESCRIPTION	: Function to request posts from the API
+     *	PARAMETERS : Nothing
+     *	RETURNS : Nothing
+     */
     const fetchPosts = async () => {
       try {
         const response = await axiosInstance.get(`/forums/${id}`, {
@@ -27,6 +40,14 @@ const ForumPage = () => {
     fetchPosts();
   }, []);
 
+  /*
+   *	FUNCTION : handleClick
+   *	DESCRIPTION	: Function to handle an onClick event
+                    handling storage of favorites in web storage
+   *	PARAMETERS :
+   *      id - The id of the forum post.
+   *	RETURNS : Nothing
+   */
   const handleClick = (id) => {
     let data = localStorage.getItem("favorites");
 

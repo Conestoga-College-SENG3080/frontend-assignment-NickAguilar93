@@ -1,3 +1,10 @@
+/*
+ * FILE : ErrorPage.jsx
+ * PROJECT : SENG3080 - Frontend Assignment
+ * PROGRAMMER : Nicholas Aguilar
+ * FIRST VERSION : 2026-02-22
+ * DESCRIPTION : This file defines the ErrorPage component which is the where react goes when an error is thrown or the router has an error
+ */
 import { HttpStatusCode } from "axios";
 import { isRouteErrorResponse, useNavigate, useRouteError } from "react-router";
 
@@ -5,7 +12,7 @@ const ErrorPage = () => {
   const error = useRouteError();
   const navigate = useNavigate();
 
-  let title = "Ooops! Something went wrong.";
+  let title = "Oops! Something went wrong.";
   let message = "Oops, something went wrong on our end";
 
   if (isRouteErrorResponse) {

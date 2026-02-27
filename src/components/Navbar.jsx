@@ -1,3 +1,10 @@
+/*
+ * FILE : Navbar.jsx
+ * PROJECT : SENG3080 - Frontend Assignment
+ * PROGRAMMER : Nicholas Aguilar
+ * FIRST VERSION : 2026-02-22
+ * DESCRIPTION : This file defines the Navbar component which sits at the top of the website, displaying navigation content and a user portrait
+ */
 import { useUser } from "../hooks/useUser";
 import NavItem from "./NavItem";
 const Navbar = () => {

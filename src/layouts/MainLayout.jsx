@@ -1,3 +1,10 @@
+/*
+ * FILE : MainLayout.jsx
+ * PROJECT : SENG3080 - Frontend Assignment
+ * PROGRAMMER : Nicholas Aguilar
+ * FIRST VERSION : 2026-02-22
+ * DESCRIPTION : This file defines the MainLayout component which acts as a container for the main components of the application
+ */
 import { Outlet } from "react-router";
 import Navbar from "../components/Navbar";
 import { useUser } from "../hooks/useUser";

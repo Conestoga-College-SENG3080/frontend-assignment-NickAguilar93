@@ -1,13 +1,25 @@
+/*
+ * FILE : Homepage.jsx
+ * PROJECT : SENG3080 - Frontend Assignment
+ * PROGRAMMER : Nicholas Aguilar
+ * FIRST VERSION : 2026-02-22
+ * DESCRIPTION : This file defines the homepage component which is the main landing page of the application
+ */
 import { useEffect, useState } from "react";
 import Card from "../components/Card";
 import axiosInstance from "../services/axiosInstance";
 import { useNavigate } from "react-router";
 const Homepage = () => {
   const [forums, setForums] = useState(null);
-  const [selectedForum, setSelectedForum] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
   useEffect(() => {
+    /*
+     *	FUNCTION : fetchForums
+     *	DESCRIPTION	: Function to request forums from the API
+     *	PARAMETERS : Nothing
+     *	RETURNS : Nothing
+     */
     const fetchForums = async () => {
       try {
         const response = await axiosInstance.get("/forums");
@@ -22,6 +34,13 @@ const Homepage = () => {
     fetchForums();
   }, []);
 
+  /*
+   *	FUNCTION : handleClick
+   *	DESCRIPTION	: Function to handle an onClick event which will navigate to the forum page
+   *	PARAMETERS :
+   *      slug - The name of the forum.
+   *	RETURNS : Nothing
+   */
   const handleClick = (slug) => {
     navigate(`forum/${slug}`);
   };

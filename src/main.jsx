@@ -1,3 +1,10 @@
+/*
+ * FILE : main.jsx
+ * PROJECT : SENG3080 - Frontend Assignment
+ * PROGRAMMER : Nicholas Aguilar
+ * FIRST VERSION : 2026-02-22
+ * DESCRIPTION : This file contains the main entry point for the react application.
+ */
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";

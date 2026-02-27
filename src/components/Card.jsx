@@ -1,3 +1,10 @@
+/*
+ * FILE : Card.jsx
+ * PROJECT : SENG3080 - Frontend Assignment
+ * PROGRAMMER : Nicholas Aguilar
+ * FIRST VERSION : 2026-02-22
+ * DESCRIPTION : This file defines the Card component which acts as a general display panel for content.
+ */
 const Card = ({
   title,
   description,
