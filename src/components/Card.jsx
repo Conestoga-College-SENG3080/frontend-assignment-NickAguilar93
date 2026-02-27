@@ -10,7 +10,7 @@ const Card = ({
 }) => {
   return (
     <div
-      className={`bg-slate-300 dark:bg-slate-800 rounded m-2 ${!button && "cursor-pointer"}`}
+      className={`bg-slate-300 dark:bg-slate-800 rounded m-2 ${!button && "cursor-pointer hover:ring-4 hover:ring-blue-500"} `}
       onClick={!button ? onClick : () => {}}
     >
       <div className="px-6 py-4">
@@ -32,7 +32,7 @@ const Card = ({
           {button && (
             <button
               onClick={buttonOnClick}
-              className=" bg-red-700 font-bold rounded-lg p-2 cursor-pointer"
+              className=" bg-red-700 font-bold rounded-lg p-2 cursor-pointer hover:ring-2"
             >
               Remove Post
             </button>
